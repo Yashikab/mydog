@@ -1,0 +1,21 @@
+kind: pipeline
+name: default
+
+steps:
+- name: mydog-python
+  image: plugins/docker
+  environment:
+    USERNAME:
+      from_secret: username
+    DOCKER_PW:
+      from_secret: dockerpw
+  settings:
+    username: $USERNAME
+    password: $DOCKER_PW
+    repo: $USERNAME/mydog
+    tags: python-dev
+  when:
+    & dev-push
+    branch:
+      exclude:
+        - master
