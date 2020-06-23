@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: mydog-python
-  image: plugins/dockerhub
+  image: plugins/docker
   environment:
     USERNAME:
       from_secret: username
