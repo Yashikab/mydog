@@ -15,7 +15,7 @@ steps:
     repo: $USERNAME/mydog
     tags: python-dev
   when:
-    & dev-push
+    &dev-push
     branch:
       exclude:
         - master
