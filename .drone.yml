@@ -12,7 +12,7 @@ steps:
   settings:
     username: $USERNAME
     password: $DOCKER_PW
-    repo: mydog
+    repo: yashikab/mydog
     tags: python-dev
   when:
     &dev-push
