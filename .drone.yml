@@ -10,7 +10,7 @@ steps:
     DOCKER_PW:
       from_secret: dockerpw
   settings:
-    username: $USERNAME
+    username: yashikab
     password: $DOCKER_PW
     repo: yashikab/mydog
     tags: python-dev
