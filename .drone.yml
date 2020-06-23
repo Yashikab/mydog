@@ -9,14 +9,9 @@ steps:
       from_secret: username
     password:
       from_secret: dockerpw
-<<<<<<< HEAD
-  settings:
-    username: yashikab
-    password: $DOCKER_PW
-=======
->>>>>>> f46307f... fix5
     repo: yashikab/mydog
     tags: python-dev
+    dockerfile: python/Dockerfile
   when:
     &dev-push
     branch:
