@@ -4,14 +4,17 @@ name: default
 steps:
 - name: mydog-python
   image: plugins/docker
-  environment:
-    USERNAME:
+  settings:
+    username:
       from_secret: username
-    DOCKER_PW:
+    password:
       from_secret: dockerpw
+<<<<<<< HEAD
   settings:
     username: yashikab
     password: $DOCKER_PW
+=======
+>>>>>>> f46307f... fix5
     repo: yashikab/mydog
     tags: python-dev
   when:
