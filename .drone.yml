@@ -2,18 +2,31 @@ kind: pipeline
 name: default
 
 steps:
-- name: mydog-python
+- name: mydog-python-dev
   image: plugins/docker
   settings:
+    &settings
     username:
       from_secret: username
     password:
       from_secret: dockerpw
     repo: yashikab/mydog
     tags: python-dev
-    dockerfile: python/Dockerfile
+    dockerfile: &dockerfile python/Dockerfile
   when:
     &dev-push
     branch:
       exclude:
         - master
+
+- name: mydog-python
+  image: plugins/docker
+  settings:
+    <<: *settings
+    tags: latest python
+    dockerfile: *dockerfile
+  when:
+    branch:
+      - master
+    event:
+      - push
