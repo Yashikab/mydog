@@ -23,7 +23,9 @@ steps:
   image: plugins/docker
   settings:
     <<: *settings
-    tags: latest python
+    tags:
+      - latest
+      - python
     dockerfile: *dockerfile
   when:
     branch:
