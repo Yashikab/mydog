@@ -8,6 +8,8 @@ RUN mkdir src
 COPY /python/src/* src/
 COPY /python/report.sh /
 
+RUN ls -l /
+
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
 RUN curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
