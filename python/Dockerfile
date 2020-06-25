@@ -6,6 +6,7 @@ RUN apt-get -y install curl git
 COPY /python/Pipfile* /
 RUN mkdir src
 COPY /python/src/* src/
+COPY /python/report.sh /
 
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
