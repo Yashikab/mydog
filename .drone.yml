@@ -9,7 +9,7 @@ name: default
 
 steps:
 - name: mydog-dev
-  image: docker:dind
+  image: yashikab/drone-build:latest
   environment:
     DOCKER_USER:
       from_secret: username
