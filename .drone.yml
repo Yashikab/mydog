@@ -1,9 +1,8 @@
+---
 kind: pipeline
 name: default
 
-steps:
-- name: mydog-python-dev
-  &build .
+dev: &build
   image: yashikab/drone-build
   environment:
     DOCKER_USER:
@@ -19,7 +18,12 @@ steps:
       exclude:
         - master
 
-- name: mydog-python
+
+steps:
+- name: mydog-dev
+  <<: *build
+
+- name: mydog
   <<: *build
   command:
     - *login
