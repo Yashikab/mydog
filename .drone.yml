@@ -15,12 +15,10 @@ steps:
       from_secret: username
     DOCKER_PASS:
       from_secret: dockerpw
-  volumes:
-    - name: dockersock
-      path: /var/run/docker.sock
   commands:
     - echo $PATH
     - docker -v
+    - nohup dockerd &
     - docker images
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
     - make dev-release
@@ -42,8 +40,3 @@ steps:
 #       - master
 #     event:
 #       - push
-
-volumes:
-  - name: dockersock
-    host:
-      path: /var/run/docker.sock
