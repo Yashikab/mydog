@@ -9,7 +9,7 @@ name: default
 
 steps:
 - name: mydog-dev
-  image: yashikab/drone-build:latest
+  image: plugin/docker
   environment:
     DOCKER_USER:
       from_secret: username
@@ -17,9 +17,7 @@ steps:
       from_secret: dockerpw
     DOCKER_TLS_CERTDIR: ""
   commands:
-    - which bash
     - docker -v
-    - systemctl start docker
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
     - make dev-release
   when:
