@@ -16,8 +16,13 @@ steps:
     DOCKER_PASS:
       from_secret: dockerpw
     DOCKER_TLS_CERTDIR: ""
+  settings:
+    username:
+      from_secret: username
+    password:
+      from_secret: dockerpw
   commands:
-    - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+  #   - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
     - make dev-release
   when:
     &dev-push
