@@ -9,7 +9,7 @@ name: default
 
 steps:
 - name: mydog-dev
-  image: docker:dind
+  image: docker.io/docker:dind
   environment:
     DOCKER_USER:
       from_secret: username
