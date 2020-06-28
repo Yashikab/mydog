@@ -10,6 +10,7 @@ dev: &build
     DOCKER_PASS:
       from_secret: dockerpw
   command:
+    - echo $PATH
     - docker -v
     - docker images
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
