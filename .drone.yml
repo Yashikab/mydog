@@ -2,7 +2,12 @@
 kind: pipeline
 name: default
 
-dev: &build
+# dev: &build
+
+
+
+steps:
+- name: mydog-dev
   image: yashikab/drone-build
   environment:
     DOCKER_USER:
@@ -21,20 +26,15 @@ dev: &build
       exclude:
         - master
 
+# - name: mydog
+#   <<: *build
+#   command:
+#     - *login
+#     - make release
 
-steps:
-- name: mydog-dev
-  <<: *build
-
-- name: mydog
-  <<: *build
-  command:
-    - *login
-    - make release
-
-  when:
-    &master-push
-    branch:
-      - master
-    event:
-      - push
+#   when:
+#     &master-push
+#     branch:
+#       - master
+#     event:
+#       - push
