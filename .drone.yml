@@ -19,8 +19,6 @@ steps:
   commands:
     - echo $PATH
     - docker -v
-    - nohup dockerd &
-    - docker images
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
     - make dev-release
   when:
