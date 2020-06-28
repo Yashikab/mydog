@@ -3,7 +3,7 @@ kind: pipeline
 name: default
 
 dev: &build
-  image: docker:latest
+  image: yashikab/drone-build
   environment:
     DOCKER_USER:
       from_secret: username
