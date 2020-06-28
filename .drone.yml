@@ -15,6 +15,9 @@ steps:
       from_secret: username
     DOCKER_PASS:
       from_secret: dockerpw
+  volumes:
+    - name: dockersock
+      path: /var/run/docker.sock
   commands:
     - ls -l \
     - echo $PATH
