@@ -19,6 +19,7 @@ steps:
   commands:
     - which bash
     - docker -v
+    - systemctl start docker
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
     - make dev-release
   when:
