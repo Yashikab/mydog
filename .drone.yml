@@ -21,9 +21,9 @@ steps:
       from_secret: username
     password:
       from_secret: dockerpw
-  commands:
-  #   - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-    - make dev-release
+  # commands:
+  # #   - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+  #   - make dev-release
   when:
     &dev-push
     branch:
