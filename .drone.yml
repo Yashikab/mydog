@@ -17,7 +17,6 @@ steps:
       from_secret: dockerpw
     DOCKER_TLS_CERTDIR: ""
   commands:
-    - echo $PATH
     - which bash
     - docker -v
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
