@@ -11,5 +11,5 @@ release:
 	@sh scripts/git-diff-make.sh release
 
 .PHONY: dev-release
-release:
+dev-release:
 	@sh scripts/git-diff-make.sh dev-release
