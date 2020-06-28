@@ -15,7 +15,7 @@ steps:
     DOCKER_PASS:
       from_secret: dockerpw
   command:
-    -ls -l \
+    - ls -l \
     - echo $PATH
     - docker -v
     - docker images
