@@ -4,15 +4,18 @@ type: docker
 name: default
 
 # dev: &build
+
+
+
 steps:
 - name: mydog-dev
-  image: yashikab/mydog:python
+  image: yashikab/drone-build
   environment:
     DOCKER_USER:
       from_secret: username
     DOCKER_PASS:
       from_secret: dockerpw
-  command:
+  commands:
     - ls -l \
     - echo $PATH
     - docker -v
