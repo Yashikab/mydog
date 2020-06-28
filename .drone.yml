@@ -3,13 +3,15 @@ kind: pipeline
 name: default
 
 dev: &build
-  image: yashikab/drone-build
+  image: docker:latest
   environment:
     DOCKER_USER:
       from_secret: username
     DOCKER_PASS:
       from_secret: dockerpw
   command:
+    - docker -v
+    - docker images
     - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
     - make dev-release
   when:
