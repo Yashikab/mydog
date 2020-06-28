@@ -17,6 +17,7 @@ steps:
       from_secret: dockerpw
   commands:
     - echo $PATH
+    - service docker status
     - docker -v
     - nohup dockerd &
     - docker images
