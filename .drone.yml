@@ -8,7 +8,7 @@ name: default
 
 steps:
 - name: mydog-dev
-  image: yashikab/drone-build
+  image: golang
   environment:
     DOCKER_USER:
       from_secret: username
