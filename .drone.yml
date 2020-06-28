@@ -18,7 +18,6 @@ steps:
     DOCKER_TLS_CERTDIR: ""
   commands:
     - echo $PATH
-    - service docker status
     - docker -v
     - nohup dockerd &
     - docker images
