@@ -31,6 +31,6 @@ release:
 	@make push TAGS="$(RELEASE_TAGS)"
 
 .PHONY: dev-release
-release:
+dev-release:
 	@make build TAGS="$(DEV_RELEASE_TAGS)"
 	@make push TAGS="$(DEV_RELEASE_TAGS)"
