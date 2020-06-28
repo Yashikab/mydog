@@ -8,13 +8,14 @@ name: default
 
 steps:
 - name: mydog-dev
-  image: golang
+  image: docker:dind
   environment:
     DOCKER_USER:
       from_secret: username
     DOCKER_PASS:
       from_secret: dockerpw
   command:
+    -ls -l \
     - echo $PATH
     - docker -v
     - docker images
