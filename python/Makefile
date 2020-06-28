@@ -1,11 +1,12 @@
-NAME         := mydog
-REVISION     := $(shell git rev-parse --short HEAD)
-ORIGIN       := $(shell git remote get-url origin | sed -e 's/^.*@//g')
-RELEASE_TAGS := latest python
-TAGS         := python
-REGISTRY     := index.docker.io
-USER         := yashikab
-IMAGENAME    := $(USER)/$(NAME)
+NAME             := mydog
+REVISION         := $(shell git rev-parse --short HEAD)
+ORIGIN           := $(shell git remote get-url origin | sed -e 's/^.*@//g')
+RELEASE_TAGS     := latest python
+DEV_RELEASE_TAGS := python-dev
+TAGS             := python
+REGISTRY         := index.docker.io
+USER             := yashikab
+IMAGENAME        := $(USER)/$(NAME)
 .PHONY: test
 test:
 	@echo $(NAME)
@@ -28,3 +29,8 @@ push:
 release:
 	@make build TAGS="$(RELEASE_TAGS)"
 	@make push TAGS="$(RELEASE_TAGS)"
+
+.PHONY: dev-release
+release:
+	@make build TAGS="$(DEV_RELEASE_TAGS)"
+	@make push TAGS="$(DEV_RELEASE_TAGS)"

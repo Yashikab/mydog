@@ -9,3 +9,7 @@ push:
 .PHONY: release
 release:
 	@sh scripts/git-diff-make.sh release
+
+.PHONY: dev-release
+release:
+	@sh scripts/git-diff-make.sh dev-release

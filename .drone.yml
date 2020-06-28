@@ -3,16 +3,16 @@ name: default
 
 steps:
 - name: mydog-python-dev
-  image: plugins/docker
-  settings:
-    &settings
-    username:
+  &build
+  image: yashikab/drone-build
+  environment:
+    DOCKER_USER:
       from_secret: username
-    password:
+    DOCKER_PASS:
       from_secret: dockerpw
-    repo: yashikab/mydog
-    tags: python-dev
-    dockerfile: &dockerfile python/Dockerfile
+  command:
+    - &login echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+    - make dev-release
   when:
     &dev-push
     branch:
@@ -20,14 +20,13 @@ steps:
         - master
 
 - name: mydog-python
-  image: plugins/docker
-  settings:
-    <<: *settings
-    tags:
-      - latest
-      - python
-    dockerfile: *dockerfile
+  <<: *build
+  command:
+    - *login
+    - make release
+
   when:
+    &master-push
     branch:
       - master
     event:
