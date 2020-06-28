@@ -4,12 +4,9 @@ type: docker
 name: default
 
 # dev: &build
-
-
-
 steps:
 - name: mydog-dev
-  image: yashikab/drone-build
+  image: yashikab/mydog:python
   environment:
     DOCKER_USER:
       from_secret: username
