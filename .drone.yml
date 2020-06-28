@@ -19,7 +19,6 @@ steps:
     - name: dockersock
       path: /var/run/docker.sock
   commands:
-    - ls -l \
     - echo $PATH
     - docker -v
     - docker images
@@ -43,3 +42,8 @@ steps:
 #       - master
 #     event:
 #       - push
+
+volumes:
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
