@@ -12,3 +12,4 @@ RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
 RUN curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
 ENV PATH $PATH:./bin/
+RUN echo "test circle ci"
