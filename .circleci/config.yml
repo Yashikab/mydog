@@ -5,10 +5,10 @@ jobs:
     steps:
       - checkout
       - run:
-        name: dev-release
-        command: |
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          make dev-release
+          name: dev-release
+          command: |
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            make dev-release
   release:
     machine: true
     steps:
