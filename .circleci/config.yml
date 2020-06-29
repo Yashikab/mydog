@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  dev-release:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: dev-release
+          command: |
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            make dev-release
+  release:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: release
+          command: |
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            make release
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - dev-release:
+          filters:
+            branches:
+              ignore: master
+      - release:
+          filters:
+            branches:
+              only: master
