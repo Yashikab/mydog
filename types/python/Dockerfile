@@ -3,10 +3,10 @@ FROM python:3.7
 RUN apt-get update
 RUN apt-get -y install curl git
 
-COPY /python/Pipfile* /
+COPY /types/python/Pipfile* /
 RUN mkdir src
-COPY /python/src/* src/
-COPY /python/report.sh /
+COPY /types/python/src/* src/
+COPY /types/python/report.sh /
 
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
