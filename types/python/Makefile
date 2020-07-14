@@ -19,7 +19,7 @@ build:
 		--build-arg IMAGE_NAME=$(IMAGENAME) \
 		--build-arg APP_ID=$(APP_ID) \
 		--build-arg INSTALLATION_ID=$(INSTALLATION_ID) \
-		--build-arg PRIVATE_KEY=$(PRIVATE_KEY) \
+		--build-arg PRIVATE_KEY="$(PRIVATE_KEY)" \
 		$(addprefix -t $(IMAGENAME):,$(TAGS)) .
 
 .PHONY: push
