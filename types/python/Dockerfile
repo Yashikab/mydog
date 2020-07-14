@@ -8,8 +8,12 @@ RUN mkdir src
 COPY src/* src/
 COPY report.sh /
 
+ARG APP_ID
+ENV APP_ID ${APP_ID}
+
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
 RUN curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
 ENV PATH $PATH:./bin/
 RUN echo "test circle ci"
+RUN echo $APP_ID

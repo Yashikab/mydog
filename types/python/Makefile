@@ -17,6 +17,7 @@ build:
 		--build-arg GIT_REVISION=$(REVISION) \
 		--build-arg GIT_ORIGIN=$(ORIGIN) \
 		--build-arg IMAGE_NAME=$(IMAGENAME) \
+		--build-arg APP_ID=$(APP_ID)
 		$(addprefix -t $(IMAGENAME):,$(TAGS)) .
 
 .PHONY: push
