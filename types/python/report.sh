@@ -9,7 +9,7 @@ else
     rm /src/token.conf
 
     echo $1
-    cat flake8 $1 | reviewdog -efm="%f:%l:%c: %m" -reporter=github-pr-review > comment
+    flake8 $1 | reviewdog -reporter="github-pr-review" -f=pep8 > comment
 
     if [ ! -s comment ]; then
         echo ":100: All OK!" > comment
