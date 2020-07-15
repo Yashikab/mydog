@@ -13,6 +13,7 @@ else
 
     if [ ! -s comment ]; then
         echo ":100: All OK!" > comment
+    fi
 
     curl -X POST \
         -H "Authorization: token ${REVIEWDOG_GITHUB_API_TOKEN}" \
