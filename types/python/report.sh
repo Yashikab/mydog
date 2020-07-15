@@ -9,5 +9,16 @@ else
     rm /src/token.conf
 
     echo $1
-    flake8 $1 | reviewdog -efm="%f:%l:%c: %m" -reporter=github-pr-review
+    flake8 $1 | reviewdog -efm="%f:%l:%c: %m" -reporter=github-pr-review > comment
+
+    if [ ! -s comment ]; then
+        echo ":100: All OK!" > comment
+
+    curl -X POST \
+        -H "Authorization: token ${REVIEWDOG_GITHUB_API_TOKEN}" \
+        -H "Accept: application/json" \
+        -H "Content-Type:application/json" \
+        -d "{\"body\": \"$(cat comment)\"}" \
+        "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
+
 fi
