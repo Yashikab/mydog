@@ -6,7 +6,7 @@ RUN apt-get -y install curl git
 COPY Pipfile* /
 RUN mkdir src
 COPY src/* src/
-COPY report.sh /
+COPY report.sh /usr/local/bin/rp_reviwdog
 
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
