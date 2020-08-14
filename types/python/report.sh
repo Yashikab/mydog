@@ -9,10 +9,13 @@ else
     rm /src/token.conf
 
     echo $1
-    flake8 $1 | reviewdog -reporter="github-pr-review" -f=pep8 > comment
+    flake8 $1 | reviewdog -reporter="github-pr-review" -f=pep8 > content
 
-    if [ ! -s comment ]; then
+    if [ ! -s content ]; then
         echo ":100: All OK!" > comment
+    else
+        lines=$(cat content | wc -l)
+        echo "you have ${lines} warnings or errors on python style codes." > comment
     fi
 
     curl -X POST \
