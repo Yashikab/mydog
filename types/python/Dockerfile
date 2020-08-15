@@ -8,7 +8,8 @@ RUN mkdir src
 COPY src/* src/
 COPY report.sh /usr/local/bin/rp_reviewdog
 
-RUN chmod +x /usr/local/bin/rp_reviewdog
+RUN cat rp_reviewdog
+RUN chmod a+x rp_reviewdog
 
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
