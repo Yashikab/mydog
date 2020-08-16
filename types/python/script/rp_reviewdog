@@ -18,6 +18,7 @@ else
     else
         lines=$(cat content | wc -l)
         echo "you have ${lines} warnings or errors on python style codes." > comment
+        cat content >> comment
     fi
 
     curl -X POST \
