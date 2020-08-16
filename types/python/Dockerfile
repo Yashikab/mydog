@@ -7,8 +7,10 @@ RUN apt-get -y install curl git
 COPY Pipfile* /
 RUN mkdir src
 COPY src/* src/
-COPY report.sh /usr/local/bin/rp_reviewdog
-RUN chmod a+x /usr/local/bin/rp_reviewdog
+RUN mkdir /usr/local/bin/myscript
+ENV PATH $PATH:/usr/local/bin/myscript
+COPY script/* /usr/local/bin/myscript/
+RUN chmod a+x /usr/local/bin/myscript/*
 RUN rp_reviewdog --test
 
 RUN pip install pipenv==2018.11.26
