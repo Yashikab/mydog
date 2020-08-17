@@ -2,7 +2,7 @@
 
 # TODO: markdownにする
 if [ $# -ne 1 ]; then
-    echo "input target body" 1>&2
+    echo "input target file" 1>&2
     exit 1
 elif [ $1 = '--test' ]; then
     echo "command is available"
@@ -13,11 +13,11 @@ python /src/get_token.py
 export GITHUB_API_TOKEN=`cat /src/token.conf`
 rm /src/token.conf
 
-body_comment=$1
+comment_filename=$1
 
 curl -X POST \
     -H "Authorization: token ${GITHUB_API_TOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type:application/json" \
-    -d "{\"body\": \"${body_comment}\"}" \
+    -d "{\"body\": \"$(cat body_comment)\"}" \
     "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
