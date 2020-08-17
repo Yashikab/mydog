@@ -1,7 +1,13 @@
 #!/bin/sh
+
+# TODO: markdownにする
 if [ $# -ne 1 ]; then
     echo "input target body" 1>&2
     exit 1
+elif [ $1 = '--test' ]; then
+    echo "command is available"
+    exit 0
+fi
 
 python /src/get_token.py
 export GITHUB_API_TOKEN=`cat /src/token.conf`
