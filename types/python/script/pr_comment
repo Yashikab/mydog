@@ -10,7 +10,7 @@ rm /src/token.conf
 body_comment=$1
 
 curl -X POST \
-    -H "Authorization: token ${REVIEWDOG_GITHUB_API_TOKEN}" \
+    -H "Authorization: token ${GITHUB_API_TOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type:application/json" \
     -d "{\"body\": \"${body_comment}\"}" \
