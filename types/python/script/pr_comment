@@ -21,5 +21,3 @@ curl -X POST \
     -H "Content-Type:application/json" \
     -d "{\"body\": \"${body_comment}\"}" \
     "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
-
-rm body_comment
