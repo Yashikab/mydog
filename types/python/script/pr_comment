@@ -19,5 +19,5 @@ curl -X POST \
     -H "Authorization: token ${GITHUB_API_TOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type:application/json" \
-    -d "{\"body\": \"$(cat ${comment_filename})\"}" \
-    "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
+    -d "$(cat ${comment_filename})" \
+    "https://api.github.com/markdown/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
