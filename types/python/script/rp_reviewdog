@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ $# -ne 1 ]; then
     echo "input target directory" 1>&2
     exit 1

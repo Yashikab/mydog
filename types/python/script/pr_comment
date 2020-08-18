@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # TODO: markdownにする
 if [ $# -ne 1 ]; then
@@ -7,13 +7,20 @@ if [ $# -ne 1 ]; then
 elif [ $1 = '--test' ]; then
     echo "command is available"
     exit 0
+elif [[ $1 = *.md ]]; then
+    echo "input is markdown"
+    curl https://api.github.com/markdown/raw \
+        -X "POST" \
+        -H "Content-Type: text/plain" \
+        -d "$(cat $1)" > content.xml
+    comment_filename=content.xml
+else
+    comment_filename=$1
 fi
 
 python /src/get_token.py
 export GITHUB_API_TOKEN=`cat /src/token.conf`
 rm /src/token.conf
-
-comment_filename=$1
 
 curl -X POST \
     -H "Authorization: token ${GITHUB_API_TOKEN}" \
@@ -21,3 +28,7 @@ curl -X POST \
     -H "Content-Type:application/json" \
     -d "{\"body\": \"$(cat ${comment_filename})\"}" \
     "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
+
+if [[ $1 = *.md ]]; then
+    rm content.xml
+fi
