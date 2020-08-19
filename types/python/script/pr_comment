@@ -18,8 +18,6 @@ else
     comment_filename=$1
 fi
 
-cat $comment_filename
-
 python /src/get_token.py
 export GITHUB_API_TOKEN=`cat /src/token.conf`
 rm /src/token.conf
