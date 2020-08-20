@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: markdownにする
 if [ $# -ne 1 ]; then
     echo "input target file" 1>&2
     exit 1
@@ -13,6 +12,7 @@ elif [[ $1 = *.md ]]; then
         -X "POST" \
         -H "Content-Type: text/plain" \
         -d "$(cat $1)" > content.xml
+    sed -i -ze "s/\n//g" -e "s/\"/\\\\\\\\\\\\\"/g" content.xml
     comment_filename=content.xml
 else
     comment_filename=$1
