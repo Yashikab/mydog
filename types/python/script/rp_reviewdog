@@ -6,9 +6,9 @@ elif [ $1 = '--test' ]; then
     echo "command is available"
     exit 0
 else
-    python /src/get_token.py
-    export REVIEWDOG_GITHUB_API_TOKEN=`cat /src/token.conf`
-    rm /src/token.conf
+    # python /src/get_token.py
+    # export REVIEWDOG_GITHUB_API_TOKEN=`cat /src/token.conf`
+    # rm /src/token.conf
 
     echo $1
     flake8 $1 | reviewdog -reporter="github-pr-review" -f=pep8 > content
