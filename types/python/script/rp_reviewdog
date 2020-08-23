@@ -7,7 +7,8 @@ elif [ $1 = '--test' ]; then
     exit 0
 else
     python /src/get_token.py
-    export REVIEWDOG_GITHUB_API_TOKEN=`cat /src/token.conf`
+    export GITHUB_API_TOKEN=`cat /src/token.conf`
+    export REVIEWDOG_GITHUB_API_TOKEN=$GITHUB_API_TOKEN
     rm /src/token.conf
 
     echo $1
@@ -21,7 +22,7 @@ else
         cat content >> comment
     fi
 
-    pr_comment comment
+    pr_comment comment --skip-token
     rm comment
     rm content
 
