@@ -21,7 +21,12 @@ else
         cat content >> comment
     fi
 
-    pr_comment comment
+    curl -X POST \
+        -H "Authorization: token ${REVIEWDOG_GITHUB_API_TOKEN}" \
+        -H "Accept: application/json" \
+        -H "Content-Type:application/json" \
+        -d "{\"body\": \"$(cat comment)\"}" \
+        "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments"
     rm comment
     rm content
 
