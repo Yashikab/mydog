@@ -16,6 +16,7 @@ elif [[ $1 = *.md ]]; then
     comment_filename=content.xml
 else
     comment_filename=$1
+    sed -i -e "s/\n/\\\\/g" $comment_filename
 fi
 
 python /src/get_token.py
