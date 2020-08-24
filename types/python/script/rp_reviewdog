@@ -1,11 +1,11 @@
 #!/bin/bash
-if [ $# -ne 1 ]; then
-    echo "input target directory" 1>&2
+if [ $# -eq 0 ]; then
+    echo "You have to set at least filename." 1>&2
     exit 1
 elif [ $1 = '--test' ]; then
     echo "command is available"
     exit 0
-else
+elif [ -e $1 ]; then
     python /src/get_token.py
     export GITHUB_API_TOKEN=`cat /src/token.conf`
     export REVIEWDOG_GITHUB_API_TOKEN=$GITHUB_API_TOKEN
@@ -25,5 +25,7 @@ else
     pr_comment comment --skip-token
     rm comment
     rm content
-
+else 
+    echo "file is not found." 1>&2
+    exit 1
 fi

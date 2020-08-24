@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [ $# -eq 0 ]; then
     echo "You have to set at least filename." 1>&2
     exit 1
