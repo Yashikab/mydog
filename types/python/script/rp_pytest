@@ -12,15 +12,11 @@ elif [ -e $1 ]; then
     rm /src/token.conf
 
     echo $1
-    flake8 $1 | reviewdog -reporter="github-pr-review" -f=pep8 > content
 
-    if [ ! -s content ]; then
-        echo ":100: All OK!" > comment
-    else
-        lines=$(cat content | wc -l)
-        echo "you have ${lines} warnings or errors on python style codes." > comment
-        cat content >> comment
-    fi
+    # ここにpytest について書く
+    #
+    #
+    #
 
     pr_comment comment --skip-token
     rm comment
