@@ -13,6 +13,10 @@ elif [ -e $1 ]; then
             -H "Content-Type: text/plain" \
             -d "$(cat $1)" > target_content
         sed -i -ze "s/\n//g" -e "s/\"/\\\\\\\\\\\\\"/g" target_content
+    elif [[ $1 = *.xml ]]; then
+        echo "input is xml"
+        cat $1 > target_content
+        sed -i -ze "s/\n//g" -e "s/\"/\\\\\\\\\\\\\"/g" target_content
     else
         sed -ze "s/\n/\\\n/g" $1 > target_content
     fi
