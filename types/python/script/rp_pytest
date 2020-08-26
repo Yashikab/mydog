@@ -17,9 +17,9 @@ elif [ -e $1 ]; then
     pytest --cov=$1 --cov-branch -v > pytest_raw
     touch comment
     {
-        echo "pytest coverage."
+        echo "pytest coverage"
         echo "\`\`\`"
-        cat pytes_raw
+        cat pytest_raw
         echo "\`\`\`"
     } > comment
 
