@@ -14,13 +14,18 @@ elif [ -e $1 ]; then
     echo $1
 
     # ここにpytest について書く
-    #
-    #
-    #
+    pytest --cov=$1 --cov-branch -v > pytest_raw
+    touch comment
+    {
+        echo "pytest coverage."
+        echo "\`\`\`"
+        cat pytes_raw
+        echo "\`\`\`"
+    } > comment
 
     pr_comment comment --skip-token
     rm comment
-    rm content
+    rm pytest_raw
 else 
     echo "file is not found." 1>&2
     exit 1
