@@ -15,6 +15,7 @@ elif [ -e $1 ]; then
 
     # ここにpytest について書く
     pytest --cov=$1 --cov-branch -v > pytest_raw
+    cat pytest_raw
     touch comment
     {
         echo "pytest coverage"
