@@ -10,6 +10,10 @@ ciツールのdroneを使うことで以下のコメント投稿が行える。
 
 ## 準備
 
+指定するdocker imageは[こちら](https://hub.docker.com/repository/docker/yashikab/mydog)
+
+tagはtokenの取得にpythonを用いた場合はpython, ほか言語を用いた場合はその言語名とする（予定）。 `dev`がつくものは開発中のものなので動作が安定しない場合がある。
+
 github appを作成し、`app_id`と`installation_id`、private keyを用意する。
 それらを、以下の環境変数名で指定する。
 |id|環境変数名|
