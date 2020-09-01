@@ -14,19 +14,20 @@ elif [ -e $1 ]; then
     echo $1
 
     # ここにpytest について書く
-    pytest --cov=$1 --cov-branch > pytest_raw
-    cat pytest_raw
+    pytest --cov=$1 --cov-branch -v --cov-report=xml:pytest_raw.xml
+    pycobertura show pytest_raw.xml > pytest_table
     touch comment
     {
-        echo "pytest coverage"
+        echo "## Test Coverage"
         echo "\`\`\`"
-        cat pytest_raw
+        cat pytest_table
         echo "\`\`\`"
     } > comment
 
     pr_comment comment --skip-token
     rm comment
-    rm pytest_raw
+    rm pytest_raw.xml
+    rm pytest_table
 else 
     echo "file is not found." 1>&2
     exit 1
