@@ -2,7 +2,7 @@ FROM python:3.7
 
 SHELL ["/bin/bash", "-c"]
 RUN apt-get update
-RUN apt-get -y install curl git
+RUN apt-get -y install curl git google-cloud-sdk
 
 COPY Pipfile* /
 RUN mkdir src
