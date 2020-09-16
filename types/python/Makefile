@@ -18,6 +18,7 @@ build:
 		--build-arg GIT_REVISION=$(REVISION) \
 		--build-arg GIT_ORIGIN=$(ORIGIN) \
 		--build-arg IMAGE_NAME=$(IMAGENAME) \
+		--build-arg VAR_TEST=$(VAR_TEST) \
 		$(addprefix -t $(IMAGENAME):,$(TAGS)) .
 
 .PHONY: push
@@ -33,6 +34,5 @@ release:
 
 .PHONY: dev-release
 dev-release:
-	@echo $(VAR_TEST)
-	# @make build TAGS="$(DEV_RELEASE_TAGS)"
-	# @make push TAGS="$(DEV_RELEASE_TAGS)"
+	@make build TAGS="$(DEV_RELEASE_TAGS)"
+	@make push TAGS="$(DEV_RELEASE_TAGS)"
