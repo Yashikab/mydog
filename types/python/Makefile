@@ -7,6 +7,7 @@ TAGS             := python
 REGISTRY         := index.docker.io
 USER             := yashikab
 IMAGENAME        := $(USER)/$(NAME)
+VAR_TEST         := $(TEST_VAR)
 .PHONY: test
 test:
 	@echo $(NAME)
@@ -32,5 +33,6 @@ release:
 
 .PHONY: dev-release
 dev-release:
-	@make build TAGS="$(DEV_RELEASE_TAGS)"
-	@make push TAGS="$(DEV_RELEASE_TAGS)"
+	@echo $(VAR_TEST)
+	# @make build TAGS="$(DEV_RELEASE_TAGS)"
+	# @make push TAGS="$(DEV_RELEASE_TAGS)"
