@@ -3,6 +3,8 @@ FROM python:3.7
 SHELL ["/bin/bash", "-c"]
 ARG VAR_TEST
 ENV VAR_TEST ${VAR_TEST}
+RUN echo ${VAR_TEST}
+
 
 RUN apt-get update
 RUN apt-get -y install curl git jq
