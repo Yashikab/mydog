@@ -7,7 +7,6 @@ jobs:
       - run:
           name: dev-release
           command: |
-            echo $TEST_VAR
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             make dev-release
 

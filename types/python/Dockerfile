@@ -1,15 +1,16 @@
 FROM python:3.7
 
 SHELL ["/bin/bash", "-c"]
-ARG VAR_TEST
-ENV VAR_TEST ${VAR_TEST}
-RUN echo ${VAR_TEST}
-
+ARG SEC_CREDFILE
+ENV SEC_CREDFILE ${SEC_CREDFILE}
 
 RUN apt-get update
 RUN apt-get -y install curl git jq
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 
+# login to gcloud for secret manager
+RUN echo -E $${CREDENTIAL_KEY} > /tmp/credential.json
+RUN gcloud auth activate-service-account --key-file /tmp/credential.json
 
 COPY Pipfile* /
 RUN mkdir src
