@@ -7,7 +7,6 @@ TAGS             := python
 REGISTRY         := index.docker.io
 USER             := yashikab
 IMAGENAME        := $(USER)/$(NAME)
-SEC_CREDFILE     := $(SEC_CREDFILE)
 .PHONY: test
 test:
 	@echo $(NAME)
@@ -18,7 +17,6 @@ build:
 		--build-arg GIT_REVISION=$(REVISION) \
 		--build-arg GIT_ORIGIN=$(ORIGIN) \
 		--build-arg IMAGE_NAME=$(IMAGENAME) \
-		--build-arg SEC_CREDFILE=$(SEC_CREDFILE) \
 		$(addprefix -t $(IMAGENAME):,$(TAGS)) .
 
 .PHONY: push
