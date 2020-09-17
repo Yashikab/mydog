@@ -7,7 +7,7 @@ TAGS             := python
 REGISTRY         := index.docker.io
 USER             := yashikab
 IMAGENAME        := $(USER)/$(NAME)
-SEC_CREDFILE         := $(SEC_CREDFILE)
+SEC_CREDFILE     := $(SEC_CREDFILE)
 .PHONY: test
 test:
 	@echo $(NAME)
