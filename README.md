@@ -22,6 +22,16 @@ github appを作成し、`app_id`と`installation_id`、private keyを用意す�
 |installation_id|INSTALLATION_ID|
 |privete key|PRIVATE_KEY|
 
+### gcp secret managerを使う方法
+
+gcloud の自分のアカウントにログイン。
+secret managerに登録する。
+コマンド実行前に、 `vars_from_secret`をdrone上でログインしてから実行する。
+
+
+
+### droneのシークレットを使う方法
+
 セキュリティの観点から、上記IDはdroneのsecret変数として登録し、環境変数で登録したsecretを読み込むのが良い。
 
 drone1系での設定例
