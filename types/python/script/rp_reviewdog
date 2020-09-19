@@ -22,7 +22,7 @@ elif [ -e $1 ]; then
         cat content >> comment
     fi
 
-    pr_comment comment --skip-token
+    pr_comment_update comment reviewdog --skip-token
     rm comment
     rm content
 else 
