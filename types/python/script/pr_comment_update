@@ -47,3 +47,9 @@ curl -X POST \
     "https://api.github.com/repos/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}/issues/${DRONE_PULL_REQUEST}/comments/${COMMENT_ID}"
 
 rm target_content
+
+# TODO
+# listでnoがあればupdate,なければpostが良さそう
+# 初回POST時にidを受け取っておく(どこに保存するか)
+# listで何か対応できそうか
+
