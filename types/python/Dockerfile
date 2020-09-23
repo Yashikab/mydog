@@ -8,7 +8,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 COPY Pipfile* /
 RUN mkdir src
-COPY src/* src/
+COPY src/ src/
 RUN mkdir /usr/local/bin/myscript
 ENV PATH $PATH:/usr/local/bin/myscript
 COPY script/* /usr/local/bin/myscript/

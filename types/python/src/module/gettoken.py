@@ -66,7 +66,9 @@ if __name__ == '__main__':
 
     logger = getLogger(__name__)
     logger.addHandler(handler)
+    logger.setLevel(INFO)
     getLogger('module').addHandler(handler)
+    getLogger('module').setLevel(INFO)
 
     logger.info('gettoken has called as script.')
 
