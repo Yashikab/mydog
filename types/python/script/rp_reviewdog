@@ -1,4 +1,8 @@
 #!/bin/bash
+
+set -o errexit
+set -o nounset
+
 if [ $# -eq 0 ]; then
     echo "You have to set at least file or directory name." 1>&2
     exit 1
