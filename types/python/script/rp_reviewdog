@@ -6,7 +6,7 @@ elif [ $1 = '--test' ]; then
     echo "command is available"
     exit 0
 elif [ -e $1 ]; then
-    python /src/get_token.py
+    python /src/module/gettoken.py
     export GITHUB_API_TOKEN=`cat /src/token.conf`
     export REVIEWDOG_GITHUB_API_TOKEN=$GITHUB_API_TOKEN
     rm /src/token.conf
