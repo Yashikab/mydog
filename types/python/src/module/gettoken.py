@@ -72,7 +72,8 @@ if __name__ == '__main__':
 
     logger.info('gettoken has called as script.')
 
-    token = GetToken.make_auth_header()
+    gt = GetToken()
+    token = gt.make_auth_header()
     logger.info('save as file.')
     with open('/src/token.conf', 'w') as f:
         f.write(token)
