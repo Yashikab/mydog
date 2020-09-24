@@ -19,7 +19,7 @@ class GetToken:
 
         INSTALLATION_ID, APP_IDを環境変数に入れておく
         """
-        logger.info('Start to get token.')
+        self.logger.info('Start to get token.')
         installation_id = os.getenv('INSTALLATION_ID')
         utcnow = datetime.utcnow() + timedelta(seconds=-5)
         duration = timedelta(seconds=30)
@@ -40,10 +40,10 @@ class GetToken:
         r = requests.post(auth_url, headers=headers)
 
         if not r.ok:
-            logger.error(r.json()['message'])
+            self.logger.error(r.json()['message'])
             r.raise_for_status()
         token = r.json()['token']
-        logger.info('Successfully get token.')
+        self.logger.info('Successfully get token.')
 
         return token
 
