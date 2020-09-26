@@ -33,3 +33,5 @@ else
     echo "file is not found." 1>&2
     exit 1
 fi
+
+# reported by reviewdogなどで判定してコメントを消す。-> 新たにreviewdogでコメントさせる
