@@ -8,6 +8,8 @@ from logging import getLogger, StreamHandler, Formatter, INFO
 import os
 import requests
 
+from const import LOGGER_FMT, LOGGER_DATE_FMT
+
 
 class GetToken:
 
@@ -36,7 +38,8 @@ class GetToken:
             }
 
         auth_url = \
-            f"https://api.github.com/installations/{installation_id}/access_tokens"
+            f"https://api.github.com/installations/{installation_id}/"\
+            f"access_tokens"
         r = requests.post(auth_url, headers=headers)
 
         if not r.ok:
@@ -59,8 +62,8 @@ class GetToken:
 if __name__ == '__main__':
     handler = StreamHandler()
     fmt = Formatter(
-        fmt='[%(asctime)s] %(name)s %(levelname)s: %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
+        fmt=LOGGER_FMT,
+        datefmt=LOGGER_DATE_FMT
     )
     handler.setFormatter(fmt)
 
