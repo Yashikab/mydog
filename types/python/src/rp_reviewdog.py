@@ -83,10 +83,10 @@ def main():
     del review_list[-1]
     if len(review_list) == 0:
         body_msg = f":100: All OK!\n{dog_marker}"
-        issue.create_comment(body_msg)
     else:
         body_msg = f"You received {len(review_list)} indications.\n "\
                    f"{dog_marker}"
+    issue.create_comment(body_msg)
 
 
 if __name__ == '__main__':
