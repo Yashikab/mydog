@@ -14,7 +14,7 @@ RUN mkdir /usr/local/bin/myscript
 ENV PATH $PATH:/usr/local/bin/myscript
 COPY script/* /usr/local/bin/myscript/
 RUN chmod a+x /usr/local/bin/myscript/*
-RUN rp_reviewdog --test
+RUN rp_reviewdog --help
 
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
