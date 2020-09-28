@@ -6,7 +6,7 @@ setup(
     name="mydog_python",
     entry_points={
         "console_scripts": [
-            "rp_reviewdog_py = src:rp_reviewdog:main"
+            "rp_reviewdog_py = rp_reviewdog:main"
         ]
     }
 )
