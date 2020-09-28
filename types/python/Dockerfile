@@ -7,6 +7,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 
 COPY Pipfile* /
+COPY setup.py /
 RUN mkdir src
 COPY src/ src/
 ENV PYTHONPATH $PYTHONPATH:/src/module
@@ -18,6 +19,7 @@ RUN rp_reviewdog --test
 
 RUN pip install pipenv==2018.11.26
 RUN pipenv install --dev --system
+RUN pip install -e .
 RUN curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
 ENV PATH $PATH:./bin/
 RUN echo "test circle ci"
