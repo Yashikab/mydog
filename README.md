@@ -52,7 +52,7 @@ steps:
 ```yml
 ...
   commands:
-    - rp_reviewdog {target file or dir}
+    - rp_reviewdog --dir={target file or dir}
 ```
 
 ### pytest
