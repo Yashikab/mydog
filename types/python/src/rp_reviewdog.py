@@ -10,6 +10,17 @@ from const import LOGGER_FMT, LOGGER_DATE_FMT
 from module.gettoken import GetToken
 
 logger = getLogger(__name__)
+handler = StreamHandler()
+fmt = Formatter(
+    fmt=LOGGER_FMT,
+    datefmt=LOGGER_DATE_FMT
+)
+handler.setFormatter(fmt)
+
+logger.addHandler(handler)
+logger.setLevel(INFO)
+getLogger('module').addHandler(handler)
+getLogger('module').setLevel(INFO)
 
 
 def main():
@@ -90,16 +101,4 @@ def main():
 
 
 if __name__ == '__main__':
-    handler = StreamHandler()
-    fmt = Formatter(
-        fmt=LOGGER_FMT,
-        datefmt=LOGGER_DATE_FMT
-    )
-    handler.setFormatter(fmt)
-
-    logger.addHandler(handler)
-    logger.setLevel(INFO)
-    getLogger('module').addHandler(handler)
-    getLogger('module').setLevel(INFO)
-
     main()
