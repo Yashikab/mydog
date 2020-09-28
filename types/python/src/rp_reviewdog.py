@@ -2,10 +2,11 @@
 # python3.7.5
 import argparse
 from github import Github
-from logging import getLogger
+from logging import getLogger, StreamHandler, Formatter, INFO
 import os
 import subprocess
 
+from const import LOGGER_FMT, LOGGER_DATE_FMT
 from module.gettoken import GetToken
 
 logger = getLogger(__name__)
@@ -86,3 +87,18 @@ def main():
     else:
         body_msg = f"You received {len(review_list)} indications.\n "\
                    f"{dog_marker}"
+
+if __name__=='__main__':
+    handler = StreamHandler()
+    fmt = Formatter(
+        fmt=LOGGER_FMT,
+        datefmt=LOGGER_DATE_FMT
+    )
+    handler.setFormatter(fmt)
+
+    logger.addHandler(handler)
+    logger.setLevel(INFO)
+    getLogger('module').addHandler(handler)
+    getLogger('module').setLevel(INFO)
+
+    main()
