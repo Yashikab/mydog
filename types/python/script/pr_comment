@@ -1,4 +1,8 @@
 #!/bin/bash
+
+set -o errexit
+set -o nounset
+
 if [ $# -eq 0 ]; then
     echo "You have to set at least filename." 1>&2
     exit 1
@@ -28,7 +32,7 @@ fi
 if [ $# -ge 2 ] && [ $2 = '--skip-token' ]; then
     echo "skip getting token."
 else
-    python /src/get_token.py
+    python /src/module/gettoken.py
     export GITHUB_API_TOKEN=`cat /src/token.conf`
     rm /src/token.conf
 fi
