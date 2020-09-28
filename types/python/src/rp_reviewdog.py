@@ -88,7 +88,8 @@ def main():
         body_msg = f"You received {len(review_list)} indications.\n "\
                    f"{dog_marker}"
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     handler = StreamHandler()
     fmt = Formatter(
         fmt=LOGGER_FMT,
