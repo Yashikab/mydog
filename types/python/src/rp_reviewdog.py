@@ -41,7 +41,7 @@ def main():
     logger.info(f"Target Path is {target_path}")
 
     logger.debug('Check whether target path exists.')
-    if not target_path.exists:
+    if not target_path.exists():
         raise FileNotFoundError(f"Path {target_path} did not exist.")
 
     logger.info('Getting github token.')

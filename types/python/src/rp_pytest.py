@@ -23,6 +23,7 @@ getLogger('module').setLevel(INFO)
 
 
 def main():
+    # TODO: この辺もモジュール化したい
     parser = argparse.ArgumentParser(
         description="Pytest report to github pull request."
     )
@@ -36,7 +37,7 @@ def main():
     target_dir = target_dir.resolve()
 
     logger.debug('Check whether target path exists.')
-    if not target_dir.exists:
+    if not target_dir.exists():
         raise FileNotFoundError(f"Path {target_dir} did not exist.")
 
     logger.info('Getting github token.')
