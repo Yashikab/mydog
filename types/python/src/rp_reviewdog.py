@@ -30,10 +30,9 @@ def main():
     )
 
     parser.add_argument(
-        '-d',
-        '--dir',
+        'dir',
         type=str,
-        required=True
+        help='Input python path or file for review.'
     )
     args = parser.parse_args()
 
