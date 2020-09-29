@@ -4,6 +4,7 @@ import argparse
 from github import Github
 from logging import getLogger, StreamHandler, Formatter, INFO
 import os
+from pathlib import Path
 import subprocess
 
 from const import LOGGER_FMT, LOGGER_DATE_FMT
@@ -31,14 +32,15 @@ def main():
 
     parser.add_argument(
         'dir',
-        type=str,
+        type=Path,
         help='Input python path or file for review.'
     )
     args = parser.parse_args()
-    target_dir = args.dir
+    target_dir: Path = args.dir
+    target_dir = target_dir.resolve()
 
     logger.debug('Check whether target path exists.')
-    if not os.path.exists(target_dir):
+    if not target_dir.exists:
         raise FileNotFoundError(f"Path {target_dir} did not exist.")
 
     logger.info('Getting github token.')
