@@ -36,12 +36,13 @@ def main():
         help='Input python path or file for review.'
     )
     args = parser.parse_args()
-    target_dir: Path = args.dir
-    target_dir = target_dir.resolve()
+    target_path: Path = args.dir
+    target_path = target_path.resolve()
+    logger.info(f"Target Path is {target_path}")
 
     logger.debug('Check whether target path exists.')
-    if not target_dir.exists:
-        raise FileNotFoundError(f"Path {target_dir} did not exist.")
+    if not target_path.exists:
+        raise FileNotFoundError(f"Path {target_path} did not exist.")
 
     logger.info('Getting github token.')
     gt = GetToken()
@@ -79,7 +80,7 @@ def main():
 
     os.environ["REVIEWDOG_GITHUB_API_TOKEN"] = access_token
 
-    cmd1 = ["flake8", target_dir]
+    cmd1 = ["flake8", target_path]
     cmd2 = [
         "reviewdog",
         "-reporter=github-pr-review",
