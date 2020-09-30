@@ -1,14 +1,15 @@
 # coding: utf-8
 # python3.7.5
-import argparse
 from github import Github
 from logging import getLogger, StreamHandler, Formatter, INFO
 import os
 from pathlib import Path
 import subprocess
+import sys
 
-from const import LOGGER_FMT, LOGGER_DATE_FMT
+from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 from module.gettoken import GetToken
+from module.argprocess import getCommonArgs
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -26,23 +27,12 @@ getLogger('module').setLevel(INFO)
 
 def main():
 
-    parser = argparse.ArgumentParser(
-        description="Reviewdog with python"
-    )
+    args = sys.argv[1:]
+    description = "Reviewdog with python"
+    args_dict = getCommonArgs(args, description)
 
-    parser.add_argument(
-        'dir',
-        type=Path,
-        help='Input python path or file for review.'
-    )
-    args = parser.parse_args()
-    target_path: Path = args.dir
-    target_path = target_path.resolve()
+    target_path: Path = args_dict['dir']
     logger.info(f"Target Path is {target_path}")
-
-    logger.debug('Check whether target path exists.')
-    if not target_path.exists():
-        raise FileNotFoundError(f"Path {target_path} did not exist.")
 
     logger.info('Getting github token.')
     gt = GetToken()
