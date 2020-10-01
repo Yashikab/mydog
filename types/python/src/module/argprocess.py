@@ -9,12 +9,12 @@ def getCommonArgs(argv: list,
 
     Parameters
     ----------
-    description : str
-        paserの説明(helpで参照される部分の追加)
+        description : str
+            paserの説明(helpで参照される部分の追加)
 
     Returns
     -------
-    parser : argparse.ArgumentParser
+        parser : argparse.ArgumentParser
     """
     parser = argparse.ArgumentParser(
         description=description

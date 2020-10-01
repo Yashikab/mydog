@@ -1,5 +1,6 @@
 # coding: utf-8
 # python: 3.7.5
+from github import Github
 from logging import getLogger, StreamHandler, Formatter, INFO
 from pathlib import Path
 import sys
@@ -7,7 +8,7 @@ import sys
 from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 from module.gettoken import GetToken
 from module.argprocess import getCommonArgs
-
+from module.delcomments import deleteComments
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -33,5 +34,9 @@ def main():
     gt = GetToken()
     access_token = gt.make_auth_header()
 
-    # delete previous reviewdog comments
-    # TODO: コメント削除をモジュール化する
+    # delete previous pytest comments
+    g = Github(access_token)
+    marker = \
+        '<sub>reported by [pytest]'\
+        '(https://github.com/reviewdog/reviewdog) :police:</sub>'
+    deleteComments(g, marker)
