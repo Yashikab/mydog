@@ -7,11 +7,13 @@ verify_ssl = true
 
 [packages]
 pyjwt = "*"
+requests = "*"
+cryptography = "*"
+flake8 = "*"
+pytest = "*"
 pytest-cov = "*"
 pycobertura = "*"
 pygithub = "*"
-pytest-mock = "*"
-cryptography = "*"
 
 [requires]
 python_version = "3.7"
