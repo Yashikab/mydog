@@ -27,12 +27,12 @@ def deleteComments(gh: Github, marker: str) -> int:
     """
     logger = getLogger('module').getChild(__name__)
 
-    # try:
-    repo = gh.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
-    issue = repo.get_issue(int(ISSUE_NO))
-    pr = issue.as_pull_requjest()
-    # except Exception:
-    #     raise Exception("Couldn't get github repo, issue, pr info.")
+    try:
+        repo = gh.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
+        issue = repo.get_issue(int(ISSUE_NO))
+        pr = issue.as_pull_request()
+    except Exception as e:
+        raise Exception(f"{e}")
 
     # prのreview commentとissueのコメントの一覧を結合
     comment_list = list(issue.get_comments())
