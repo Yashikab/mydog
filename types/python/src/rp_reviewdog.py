@@ -48,7 +48,7 @@ def main():
     dog_marker = \
         '<sub>reported by [reviewdog]'\
         '(https://github.com/reviewdog/reviewdog) :dog:</sub>'
-    ghc.del_comments(g, dog_marker)
+    ghc.del_comments(dog_marker)
 
     # report by reviewdog
     logger.info('Report from reviewdog')
