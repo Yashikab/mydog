@@ -22,7 +22,7 @@ class GetToken:
         INSTALLATION_ID, APP_IDを環境変数に入れておく
         """
         self.logger.info('Start to get token.')
-        # installation_id = os.getenv('INSTALLATION_ID')
+        installation_id = os.getenv('INSTALLATION_ID')
         utcnow = datetime.utcnow() + timedelta(seconds=-5)
         duration = timedelta(seconds=30)
         payload = {
@@ -33,11 +33,13 @@ class GetToken:
         pem = self._get_private_pem()
         encoded = jwt.encode(payload, pem, "RS256")
         headers = {
-            "Authorization": "Bearer " + encoded,
+            "Authorization": "Bearer " + encoded.decode('utf-8'),
             "Accept": "application/vnd.github.machine-man-preview+json"
             }
 
-        auth_url = "https://api.github.com/app"
+        auth_url = \
+            f"https://api.github.com/app/installations/{installation_id}/"\
+            f"access_tokens"
         r = requests.post(auth_url, headers=headers)
 
         if not r.ok:
@@ -45,7 +47,6 @@ class GetToken:
             r.raise_for_status()
         token = r.json()['token']
         self.logger.info('Successfully get token.')
-
         return token
 
     def _get_private_pem(self) -> str:
