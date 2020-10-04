@@ -22,7 +22,7 @@ class GithubControl:
         except Exception as e:
             raise Exception(f"{e}")
 
-    def deleteComments(self, marker: str) -> int:
+    def del_comments(self, marker: str) -> int:
         """markerが入るコメントを削除する
 
         Parameters

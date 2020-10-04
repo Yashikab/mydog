@@ -10,7 +10,6 @@ import sys
 from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 from module.gettoken import GetToken
 from module.argprocess import getCommonArgs
-from module.delcomments import deleteComments
 from module import GithubControl
 
 logger = getLogger(__name__)
@@ -49,7 +48,7 @@ def main():
     dog_marker = \
         '<sub>reported by [reviewdog]'\
         '(https://github.com/reviewdog/reviewdog) :dog:</sub>'
-    ghc.deleteComments(g, dog_marker)
+    ghc.del_comments(g, dog_marker)
 
     # report by reviewdog
     logger.info('Report from reviewdog')
