@@ -11,6 +11,7 @@ from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 from module.gettoken import GetToken
 from module.argprocess import getCommonArgs
 from module.delcomments import deleteComments
+from module import GithubControl
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -43,29 +44,12 @@ def main():
     logger.info('start to delete previous reviewdog comments.')
 
     g = Github(access_token)
+    ghc = GithubControl(g)
+
     dog_marker = \
         '<sub>reported by [reviewdog]'\
         '(https://github.com/reviewdog/reviewdog) :dog:</sub>'
-
-    deleteComments(g, dog_marker)
-
-    # repo_owner = os.getenv("DRONE_REPO_OWNER")
-    # repo_name = os.getenv("DRONE_REPO_NAME")
-    # issue_no = os.getenv("DRONE_PULL_REQUEST")
-
-    # repo = g.get_repo(f"{repo_owner}/{repo_name}")
-    # issue = repo.get_issue(int(issue_no))
-
-    # pr = issue.as_pull_request()
-    # # prのreview commentとissueのコメントの一覧を結合
-    # comment_list = list(issue.get_comments())
-    # comment_list += list(pr.get_review_comments())
-
-    # for comment in comment_list:
-    #     if dog_marker in comment.body:
-    #         logger.debug(f'{comment.id} will be deleted.')
-    #         comment.delete()
-    # logger.info('delete comments: done.')
+    ghc.deleteComments(g, dog_marker)
 
     # report by reviewdog
     logger.info('Report from reviewdog')
@@ -96,7 +80,7 @@ def main():
     else:
         body_msg = f"You received {len(review_list)} indications.\n "\
                    f"{dog_marker}"
-    issue.create_comment(body_msg)
+    ghc.issue.create_comment(body_msg)
 
 
 if __name__ == '__main__':
