@@ -14,7 +14,8 @@ class GithubControl:
 
     def __init__(self, gh: Github):
         self.logger = getLogger('module').getChild(__class__.__name__)
-
+        print(gh)
+        print(gh.get_repo())
         try:
             self.repo = gh.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
             self.issue = self.repo.get_issue(int(ISSUE_NO))
