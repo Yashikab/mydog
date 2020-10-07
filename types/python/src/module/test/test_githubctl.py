@@ -1,13 +1,18 @@
 # coding: utf-8
 # python: 3.7
+import dataclasses
 from github import Github
-import module
-from module import (
-    const,
-    GithubControl
-)
+from module import GithubControl
 import pytest
-import os
+
+
+@dataclasses.dataclass
+class Comment:
+    id: int
+    body: str
+
+    def delete(self):
+        pass
 
 
 class TestGithubControl:
@@ -15,23 +20,18 @@ class TestGithubControl:
         with pytest.raises(Exception):
             GithubControl(Github())
 
-    def test_delcomments(self, mocker, monkeypatch):
-
-        # gh_mock = mocker.Mock(Github)
-        # rp_mock = mocker.Mock(Repository)
-        # issue_mock = mocker.Mock(Issue)
-        # mocker.patch.object(Github, "get_repo", return_value=rp_mock)
-        # gh_issue_mock = mocker.patch.object(rp_mock, "get_issue", return_value=issue_mock)
-        # gh_pr = mocker.patch.object(Issue, "as_pull_request")
-
-        # gh_issue_mock.get_comments.return_value = ('test', 'a', 'b')
-        # gh_pr.get_comments.return_value = ('c', 'test', 'd')
-        
-        mocker.patch.object(module.const, "ISSUE_NO", "840")
+    def test_delcomments(self, mocker):
         mocker.patch.object(Github, "get_repo")
         mocker.patch.object(Github.get_repo().get_issue(),
                             "get_comments",
-                            return_value=('test', 'a', 'b'))
+                            return_value=[Comment(id=1, body='test_gh'),
+                                          Comment(id=2, body='test2'),
+                                          Comment(id=3, body='test3')])
+        mocker.patch.object(Github.get_repo().get_issue().as_pull_request(),
+                            "get_review_comments",
+                            return_value=[Comment(id=11, body='pr_test_gh'),
+                                          Comment(id=12, body='pr_test2'),
+                                          Comment(id=13, body='pr_test3')])
         ghc = GithubControl(Github())
-        cnt = ghc.del_comments('test')
+        cnt = ghc.del_comments('test_gh')
         assert cnt == 2

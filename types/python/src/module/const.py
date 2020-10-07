@@ -5,6 +5,6 @@ import os
 LOGGER_FMT = '[%(asctime)s] %(name)s %(levelname)s: %(message)s'
 LOGGER_DATE_FMT = '%Y-%m-%d %H:%M:%S'
 
-REPO_OWNER = os.getenv("DRONE_REPO_OWNER", 840)
-REPO_NAME = os.getenv("DRONE_REPO_NAME", 840)
-ISSUE_NO = os.getenv("DRONE_PULL_REQUEST", 840)
+REPO_OWNER = os.getenv("DRONE_REPO_OWNER")
+REPO_NAME = os.getenv("DRONE_REPO_NAME")
+ISSUE_NO = os.getenv("DRONE_PULL_REQUEST", '-1')
