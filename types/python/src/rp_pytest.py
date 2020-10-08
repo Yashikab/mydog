@@ -57,12 +57,12 @@ def main():
 
     body_msg = (
         "## Test Coverage\n"
-        "```"
+        "```\n"
         f"{pytest_outfmt}"
         "```\n\n"
         f"{marker}"
     )
-    logger.info(body_msg)
+    logger.info(f"comment body: {body_msg}")
     ghc.issue.create_comment(body_msg)
 
 

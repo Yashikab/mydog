@@ -7,6 +7,7 @@ setup(
     entry_points={
         "console_scripts": [
             "rp_reviewdog = rp_reviewdog:main"
+            "rp_pytest=rp_pytest:main"
         ]
     }
 )
