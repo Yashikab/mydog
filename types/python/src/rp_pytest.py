@@ -44,7 +44,7 @@ def main():
     ghc = GithubControl(g)
     marker = \
         '<sub>reported by [pytest]'\
-        '(https://docs.pytest.org/en/stable/) :police:</sub>'
+        '(https://docs.pytest.org/en/stable/) :policeman:</sub>'
     ghc.del_comments(marker)
 
     # report from pytest
