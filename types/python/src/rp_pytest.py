@@ -53,7 +53,17 @@ def main():
         ["pytest", f"--cov={target_path}", "--cov-branch"],
         stdout=subprocess.PIPE)
 
-    print(pytest_result)
+    pytest_outfmt = pytest_result.stdout.decode()
+
+    body_msg = (
+        "## Test Coverage\n"
+        "```"
+        f"{pytest_outfmt}"
+        "```\n\n"
+        f"{marker}"
+    )
+    logger.info(body_msg)
+    ghc.issue.create_comment(body_msg)
 
 
 if __name__ == '__main__':
