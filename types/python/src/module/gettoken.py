@@ -8,7 +8,7 @@ from logging import getLogger, StreamHandler, Formatter, INFO
 import os
 import requests
 
-from const import LOGGER_FMT, LOGGER_DATE_FMT
+from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 
 
 class GetToken:

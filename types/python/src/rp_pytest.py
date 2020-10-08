@@ -3,12 +3,15 @@
 from github import Github
 from logging import getLogger, StreamHandler, Formatter, INFO
 from pathlib import Path
+import subprocess
 import sys
 
 from module.const import LOGGER_FMT, LOGGER_DATE_FMT
-from module.gettoken import GetToken
-from module.argprocess import getCommonArgs
-from module.delcomments import deleteComments
+from module import (
+    GetToken,
+    getCommonArgs,
+    GithubControl,
+)
 
 logger = getLogger(__name__)
 handler = StreamHandler()
@@ -29,14 +32,29 @@ def main():
     description = "Pytest report to github pull request."
     args_dict = getCommonArgs(args, description)
     target_path: Path = args_dict['dir']
+    logger.info(f"Target Path is {target_path}")
 
     logger.info('Getting github token.')
     gt = GetToken()
     access_token = gt.make_auth_header()
 
     # delete previous pytest comments
+    logger.info('start to delete previous pytest comments.')
     g = Github(access_token)
+    ghc = GithubControl(g)
     marker = \
         '<sub>reported by [pytest]'\
-        '(https://github.com/reviewdog/reviewdog) :police:</sub>'
-    deleteComments(g, marker)
+        '(https://docs.pytest.org/en/stable/) :police:</sub>'
+    ghc.del_comments(marker)
+
+    # report from pytest
+    # pytest_filepath = Path.cwd().joinpath("pytest_raw.xml")
+    pytest_result = subprocess.run(
+        ["pytest", f"--cov={target_path}", "--cov-branch"],
+        stdout=subprocess.PIPE)
+
+    print(pytest_result)
+
+
+if __name__ == '__main__':
+    main()
