@@ -8,9 +8,11 @@ import subprocess
 import sys
 
 from module.const import LOGGER_FMT, LOGGER_DATE_FMT
-from module.gettoken import GetToken
-from module.argprocess import getCommonArgs
-from module import GithubControl
+from module import (
+    GetToken,
+    getCommonArgs,
+    GithubControl,
+)
 
 logger = getLogger(__name__)
 handler = StreamHandler()

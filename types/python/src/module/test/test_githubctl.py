@@ -32,6 +32,7 @@ class TestGithubControl:
                             return_value=[Comment(id=11, body='pr_test_gh'),
                                           Comment(id=12, body='pr_test2'),
                                           Comment(id=13, body='pr_test3')])
+        com_del = mocker.patch.object(Comment, "delete")
         ghc = GithubControl(Github())
-        cnt = ghc.del_comments('test_gh')
-        assert cnt == 2
+        ghc.del_comments('test_gh')
+        assert com_del.call_count == 2

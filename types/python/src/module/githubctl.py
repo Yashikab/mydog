@@ -43,12 +43,9 @@ class GithubControl:
         comment_list += list(self.pr.get_review_comments())
 
         self.logger.info('start to delete previous target comments.')
-        count = 0
+
         for comment in comment_list:
             if marker in comment.body:
                 self.logger.debug(f'{comment.id} will be deleted.')
                 comment.delete()
-                count += 1
-        self.logger.info(f'deleted {count} comments.')
-
-        return count
+        self.logger.info('deleted comments.')
