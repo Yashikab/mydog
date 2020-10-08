@@ -35,3 +35,5 @@ class TestGithubControl:
         ghc = GithubControl(Github())
         cnt = ghc.del_comments('test_gh')
         assert cnt == 2
+
+# コメントリストをmockしてdeleteが呼ばれた数を読む
