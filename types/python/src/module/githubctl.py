@@ -42,7 +42,6 @@ class GithubControl:
         comment_list = list(self.issue.get_comments())
         comment_list += list(self.pr.get_review_comments())
 
-        print(comment_list)
         self.logger.info('start to delete previous target comments.')
         count = 0
         for comment in comment_list:
