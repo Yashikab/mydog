@@ -8,7 +8,7 @@ from logging import getLogger, StreamHandler, Formatter, INFO
 import os
 import requests
 
-from const import LOGGER_FMT, LOGGER_DATE_FMT
+from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 
 
 class GetToken:
@@ -33,12 +33,12 @@ class GetToken:
         pem = self._get_private_pem()
         encoded = jwt.encode(payload, pem, "RS256")
         headers = {
-            "Authorization": "Bearer " + encoded.decode("utf-8"),
+            "Authorization": "Bearer " + encoded.decode('utf-8'),
             "Accept": "application/vnd.github.machine-man-preview+json"
             }
 
         auth_url = \
-            f"https://api.github.com/installations/{installation_id}/"\
+            f"https://api.github.com/app/installations/{installation_id}/"\
             f"access_tokens"
         r = requests.post(auth_url, headers=headers)
 
@@ -47,7 +47,6 @@ class GetToken:
             r.raise_for_status()
         token = r.json()['token']
         self.logger.info('Successfully get token.')
-
         return token
 
     def _get_private_pem(self) -> str:
