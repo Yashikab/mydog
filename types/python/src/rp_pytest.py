@@ -63,7 +63,7 @@ def main():
         f"{marker}"
     )
     logger.info(f"comment body: {body_msg}")
-    ghc.issue.create_comment(body_msg)
+    ghc.create_comment(body_msg)
 
 
 if __name__ == '__main__':

@@ -81,7 +81,7 @@ def main():
     else:
         body_msg = f"You received {len(review_list)} indications.\n "\
                    f"{dog_marker}"
-    ghc.issue.create_comment(body_msg)
+    ghc.create_comment(body_msg)
 
 
 if __name__ == '__main__':

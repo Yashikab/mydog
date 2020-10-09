@@ -16,13 +16,13 @@ class GithubControl:
         self.logger = getLogger('module').getChild(__class__.__name__)
 
         try:
-            self.repo = gh.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
-            self.issue = self.repo.get_issue(int(ISSUE_NO))
-            self.pr = self.issue.as_pull_request()
+            self.__repo = gh.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
+            self.__issue = self.__repo.get_issue(int(ISSUE_NO))
+            self.__pr = self.__issue.as_pull_request()
         except Exception as e:
             raise Exception(f"{e}")
 
-    def del_comments(self, marker: str) -> int:
+    def del_comments(self, marker: str) -> None:
         """markerが入るコメントを削除する
 
         Parameters
@@ -39,8 +39,8 @@ class GithubControl:
         """
 
         # prのreview commentとissueのコメントの一覧を結合
-        comment_list = list(self.issue.get_comments())
-        comment_list += list(self.pr.get_review_comments())
+        comment_list = list(self.__issue.get_comments())
+        comment_list += list(self.__pr.get_review_comments())
 
         self.logger.info('start to delete previous target comments.')
 
@@ -49,3 +49,6 @@ class GithubControl:
                 self.logger.debug(f'{comment.id} will be deleted.')
                 comment.delete()
         self.logger.info('deleted comments.')
+
+    def create_comment(self, body: str) -> None:
+        self.__issue.create_comment(body)
