@@ -30,7 +30,7 @@ class GetToken:
             "exp": utcnow + duration,
             "iss": os.getenv("APP_ID")
         }
-        pem = cls._get_private_pem()
+        pem = cls._get_private_pem(cls)
         encoded = jwt.encode(payload, pem, "RS256")
         headers = {
             "Authorization": "Bearer " + encoded.decode('utf-8'),
