@@ -40,8 +40,7 @@ def main():
     with open(filepath, 'r') as f:
         msg_body = f.read()
 
-    g = Github(access_token)
-    ghc = GithubControl(g)
+    ghc = GithubControl(access_token)
     logger.info('insert comment.')
     ghc.create_comment(msg_body)
 

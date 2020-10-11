@@ -42,9 +42,7 @@ def main():
 
     # delete previous reviewdog comments
     logger.info('start to delete previous reviewdog comments.')
-
-    g = Github(access_token)
-    ghc = GithubControl(g)
+    ghc = GithubControl(access_token)
 
     dog_marker = \
         '<sub>reported by [reviewdog]'\

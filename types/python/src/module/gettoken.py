@@ -13,7 +13,7 @@ from module.const import LOGGER_FMT, LOGGER_DATE_FMT
 
 class GetToken:
 
-    logger = getLogger('module').getChild(__class__.__name__)
+    logger = getLogger('module').getChild(__name__)
 
     @classmethod
     def make_auth_header(cls) -> str:
