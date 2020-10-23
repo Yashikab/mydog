@@ -1,3 +1,4 @@
+# imageをdocker:dindにし、python3.7を手動でインストール、コマンド設定でpython, pipコマンドで動くようにする
 FROM python:3.7
 
 SHELL ["/bin/bash", "-c"]
@@ -20,3 +21,5 @@ RUN pipenv install --dev --system
 RUN pip install -e src/
 ENV PATH $PATH:./bin/
 RUN rp_reviewdog --help
+RUN rp_pytest --help
+RUN pr_comment --help
