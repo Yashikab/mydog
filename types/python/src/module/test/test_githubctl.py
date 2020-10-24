@@ -18,7 +18,7 @@ class Comment:
 class TestGithubControl:
     def test_gh_ctl_err(self):
         with pytest.raises(Exception):
-            GithubControl('')
+            GithubControl(Github())
 
     def test_delcomments(self, mocker):
         mocker.patch.object(Github, "get_repo")
@@ -33,6 +33,6 @@ class TestGithubControl:
                                           Comment(id=12, body='pr_test2'),
                                           Comment(id=13, body='pr_test3')])
         com_del = mocker.patch.object(Comment, "delete")
-        ghc = GithubControl('')
+        ghc = GithubControl(Github())
         ghc.del_comments('test_gh')
         assert com_del.call_count == 2

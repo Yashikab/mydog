@@ -34,15 +34,18 @@ def main():
     description = "Reviewdog with python"
     args_dict = getCommonArgs(args, description)
 
-    target_path: Path = args_dict['path']
+    target_path: Path = args_dict['dir']
     logger.info(f"Target Path is {target_path}")
 
     logger.info('Getting github token.')
-    access_token = GetToken.make_auth_header()
+    gt = GetToken()
+    access_token = gt.make_auth_header()
 
     # delete previous reviewdog comments
     logger.info('start to delete previous reviewdog comments.')
-    ghc = GithubControl(access_token)
+
+    g = Github(access_token)
+    ghc = GithubControl(g)
 
     dog_marker = \
         '<sub>reported by [reviewdog]'\

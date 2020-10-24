@@ -31,15 +31,17 @@ def main():
     args = sys.argv[1:]
     description = "Pytest report to github pull request."
     args_dict = getCommonArgs(args, description)
-    target_path: Path = args_dict['path']
+    target_path: Path = args_dict['dir']
     logger.info(f"Target Path is {target_path}")
 
     logger.info('Getting github token.')
-    access_token = GetToken.make_auth_header()
+    gt = GetToken()
+    access_token = gt.make_auth_header()
 
     # delete previous pytest comments
     logger.info('start to delete previous pytest comments.')
-    ghc = GithubControl(access_token)
+    g = Github(access_token)
+    ghc = GithubControl(g)
     marker = \
         '<sub>reported by [pytest]'\
         '(https://docs.pytest.org/en/stable/) :policeman:</sub>'
