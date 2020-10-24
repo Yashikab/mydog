@@ -8,7 +8,7 @@ RUN apk --update --no-cache add --virtual curl git jq
 # # pythonのinstall
 RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
 # RUN apk add zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel
-RUN apk --update --no-cache add --virtual build-temp build-base openssl make automake gcc g++ subversion
+RUN apk --update --no-cache add --virtual build-temp build-base openssl make automake gcc g++ subversion zlib-dev
 RUN tar zxvf Python-3.7.9.tgz
 WORKDIR /Python-3.7.9
 RUN ls -l
