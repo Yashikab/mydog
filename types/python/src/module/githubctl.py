@@ -12,11 +12,10 @@ from module.const import (
 
 class GithubControl:
 
-    def __init__(self, access_token: str):
-        self.logger = getLogger('module').getChild(self.__class__.__name__)
+    def __init__(self, gh: Github):
+        self.logger = getLogger('module').getChild(__class__.__name__)
 
         try:
-            gh = Github(access_token)
             self.__repo = gh.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
             self.__issue = self.__repo.get_issue(int(ISSUE_NO))
             self.__pr = self.__issue.as_pull_request()
