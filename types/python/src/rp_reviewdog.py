@@ -1,6 +1,5 @@
 # coding: utf-8
 # python3.7.5
-from github import Github
 from logging import getLogger, StreamHandler, Formatter, INFO
 import os
 from pathlib import Path
