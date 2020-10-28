@@ -20,21 +20,21 @@ def getCommonArgs(argv: list,
         description=description
     )
     parser.add_argument(
-        'dir',
+        'path',
         type=Path,
-        help='Input python path or file.'
+        help='Input target (file)path.'
     )
 
     args = parser.parse_args(argv)
 
-    target_path: Path = args.dir
+    target_path: Path = args.path
     target_path = target_path.resolve()
 
     if not target_path.exists():
         raise FileNotFoundError(f"Path {target_path} did not exist.")
 
     args_dict = {
-        'dir': target_path
+        'path': target_path
     }
 
     return args_dict

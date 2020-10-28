@@ -15,7 +15,7 @@ class TestGetCommonArgs:
         args = [str(target_path)]
         args_dict = getCommonArgs(args, description)
 
-        assert args_dict['dir'] == target_abs_path
+        assert args_dict['path'] == target_abs_path
 
     def test_getCommonArgs_err(self):
         description = "Test world"
