@@ -36,8 +36,15 @@ def main():
     access_token = GetToken.make_auth_header()
 
     logger.info('make body')
-    with open(filepath, 'r') as f:
-        msg_body = f.read()
+    try:
+        with open(filepath, 'r') as f:
+            msg_body = f.read()
+    except Exception as e:
+        logger.error(e)
+        exit(1)
+    else:
+        if msg_body == "":
+            raise Exception("No content to comment in the file.")
 
     ghc = GithubControl(access_token)
     logger.info('insert comment.')
